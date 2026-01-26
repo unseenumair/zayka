@@ -1,0 +1,314 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Zayka Color Palette */
+    --background: 40 33% 97%;
+    --foreground: 0 0% 12%;
+
+    --card: 40 33% 99%;
+    --card-foreground: 0 0% 12%;
+
+    --popover: 40 33% 99%;
+    --popover-foreground: 0 0% 12%;
+
+    --primary: 45 89% 63%;
+    --primary-foreground: 0 0% 12%;
+
+    --secondary: 40 17% 92%;
+    --secondary-foreground: 0 0% 12%;
+
+    --muted: 40 17% 92%;
+    --muted-foreground: 0 0% 40%;
+
+    --accent: 0 53% 54%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 53% 54%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 40 17% 89%;
+    --input: 40 17% 89%;
+    --ring: 45 89% 63%;
+
+    --radius: 1rem;
+
+    /* Custom Zayka tokens */
+    --zayka-yellow: 45 89% 63%;
+    --zayka-red: 0 53% 54%;
+    --zayka-charcoal: 0 0% 12%;
+    --zayka-offwhite: 40 33% 97%;
+    --zayka-border: 40 17% 89%;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(
+      135deg,
+      hsl(45 89% 63% / 0.1) 0%,
+      hsl(40 33% 97%) 100%
+    );
+    --gradient-card: linear-gradient(
+      180deg,
+      hsl(40 33% 99%) 0%,
+      hsl(40 33% 97%) 100%
+    );
+
+    /* Shadows */
+    --shadow-card: 0 4px 20px -4px hsl(0 0% 12% / 0.08);
+    --shadow-card-hover: 0 8px 30px -4px hsl(0 0% 12% / 0.12);
+    --shadow-button: 0 4px 14px -2px hsl(45 89% 63% / 0.4);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 12%;
+    --foreground: 40 33% 97%;
+    --card: 0 0% 15%;
+    --card-foreground: 40 33% 97%;
+    --popover: 0 0% 15%;
+    --popover-foreground: 40 33% 97%;
+    --primary: 45 89% 63%;
+    --primary-foreground: 0 0% 12%;
+    --secondary: 0 0% 20%;
+    --secondary-foreground: 40 33% 97%;
+    --muted: 0 0% 20%;
+    --muted-foreground: 40 17% 70%;
+    --accent: 0 53% 54%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 53% 54%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 25%;
+    --input: 0 0% 25%;
+    --ring: 45 89% 63%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: "Quicksand", sans-serif;
+    user-select: none;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--secondary));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 4px;
+    transition: background 0.2s ease;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--zayka-red));
+  }
+}
+
+@layer components {
+  /* Urdu Typography */
+  .font-urdu {
+    font-family: "Noto Sans Arabic", sans-serif !important;
+    direction: rtl;
+    line-height: 1.8;
+  }
+
+  /* Card Styles */
+  .zayka-card {
+    @apply rounded-2xl bg-card border border-border;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .zayka-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-4px);
+  }
+
+  /* Button Styles */
+  .zayka-btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-primary text-primary-foreground font-semibold px-6 py-3;
+    box-shadow: var(--shadow-button);
+    transition: all 0.2s ease;
+  }
+
+  .zayka-btn-primary:hover {
+    @apply bg-primary/90;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px -2px hsl(var(--zayka-yellow) / 0.5);
+  }
+
+  .zayka-btn-accent {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl bg-accent text-accent-foreground font-semibold px-6 py-3;
+    transition: all 0.2s ease;
+  }
+
+  .zayka-btn-accent:hover {
+    @apply bg-accent/90;
+    transform: translateY(-2px);
+  }
+
+  /* Hero gradient background */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  /* Food card image overlay */
+  .food-image-overlay {
+    @apply relative overflow-hidden;
+  }
+
+  .food-image-overlay::after {
+    content: "";
+    @apply absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 transition-opacity duration-300;
+  }
+
+  .food-image-overlay:hover::after {
+    @apply opacity-100;
+  }
+}
+
+@layer utilities {
+  /* Fade in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes spin-slow {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes bounce-gentle {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      box-shadow: 0 0 20px hsl(var(--zayka-yellow) / 0.4);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(var(--zayka-yellow) / 0.6);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  .animate-fade-out {
+    animation: fadeOut 0.3s ease-out forwards;
+  }
+
+  .animate-spin-slow {
+    animation: spin-slow 2s linear infinite;
+  }
+
+  .animate-bounce-gentle {
+    animation: bounce-gentle 2s ease-in-out infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Stagger animations */
+  .stagger-1 {
+    animation-delay: 0.1s;
+  }
+  .stagger-2 {
+    animation-delay: 0.2s;
+  }
+  .stagger-3 {
+    animation-delay: 0.3s;
+  }
+  .stagger-4 {
+    animation-delay: 0.4s;
+  }
+  .stagger-5 {
+    animation-delay: 0.5s;
+  }
+}
+
+/* ============================= */
+/* Global Click Ripple Effect    */
+/* ============================= */
+
+.ripple-effect {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+
+  background: hsl(var(--zayka-yellow) / 60%);
+  transform: translate(-50%, -50%) scale(0);
+
+  animation: ripple-wave 700ms ease-out forwards;
+  will-change: transform, opacity;
+}
+
+@keyframes ripple-wave {
+  to {
+    transform: translate(-50%, -50%) scale(28);
+    opacity: 0;
+  }
+}
+
+@media only screen and (orientation: portrait) {
+  #trustBadgesCont {
+    justify-content: flex-start;
+    width: 60vw;
+    padding-left: 4vw;
+    margin: 0 auto;
+  }
+}
