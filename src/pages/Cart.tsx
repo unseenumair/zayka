@@ -36,7 +36,7 @@ const Cart: React.FC = () => {
     const message = `${greeting}${orderItems}${totalText}${noteText}%0A%0APlaced order from Zayka ✨`;
 
     // WhatsApp redirect
-    window.open(`https://wa.me/+923284256840?text=${message}`, "_blank");
+    window.open(`https://wa.me/+923037192567?text=${message}`, "_blank");
   };
 
   if (items.length === 0) {
